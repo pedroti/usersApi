@@ -1,8 +1,9 @@
 import { ObjectId } from 'mongodb';
 import ICreateNotificationDTO from '@modules/notifications/dtos/ICreateNotificationDTO';
-import INotificationsRepository from '../INotificationsRepository';
+import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
+import Notification from '../../infra/typeorm/schemas/Notification';
 
-export default class FakeNotificationsRepository implements INotificationsRepository {
+class NotificationsRepository implements INotificationsRepository {
   private notifications: Array<Notification> = [];
 
   public async create({
@@ -10,8 +11,10 @@ export default class FakeNotificationsRepository implements INotificationsReposi
     recipient_id,
   }: ICreateNotificationDTO): Promise<Notification> {
     const notification = new Notification();
-    Object.assign(notification, {id: new ObjectId(), content, recipient_id});
+    Object.assign(notification, { id: new ObjectId(), content, recipient_id });
     this.notifications.push(notification);
     return notification;
   }
 }
+
+export default NotificationsRepository;

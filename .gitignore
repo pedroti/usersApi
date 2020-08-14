@@ -3,6 +3,5 @@ tmp/*
 !tmp/.gitkeep
 .env
 coverage
-ormconfig.json
 .vscode/
 build/
