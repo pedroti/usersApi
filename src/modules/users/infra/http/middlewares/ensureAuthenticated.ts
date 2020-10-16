@@ -20,7 +20,7 @@ export default function ensureAuthenticated(
   }
 
   const [, token] = authHeader.split(' ');
-  const decoded = verify(token, authConfig.jwt.secret);
+  const decoded = verify(token, '9cea1ae8a42590e8fdb328669f534dfb');
   const { sub } = decoded as TokenPayload;
   request.user = { id: sub };
   return next();
